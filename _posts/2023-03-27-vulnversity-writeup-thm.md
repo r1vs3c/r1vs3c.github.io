@@ -138,18 +138,17 @@ En el informe se destacan varios aspectos relevantes, entre los cuales se encuen
 
 ### HTTP - 3333
 
-Al identificar un servicio HTTP en el puerto 80, procedimos a explorar la página web correspondiente y comprobamos que se trataba de la página web de una universidad. Examinamos cada uno de los apartados de la página y su código fuente, pero no encontramos nada relevante.
+Tras identificar un servicio HTTP en el puerto 80, exploramos el contenido de la página web. Como vemos se trata de una página web de una universidad. Examinamos cada uno de los apartados de la página y su código fuente, pero no encontramos nada relevante.
 
 ![web](/assets/img/commons/vulnversity/web.png){: .center-image }
 
-Posteriormente utilizamos la herramienta `WhatWeb` para obtener información valiosa sobre la configuración del servidor y detectar posibles vulnerabilidades relacionadas con las tecnologías empleadas.
+Posteriormente utilizamos la herramienta `WhatWeb` para obtener información sobre la configuración del servidor y detectar posibles vulnerabilidades relacionadas con las tecnologías empleadas.
 
 ```bash
 ❯ whatweb http://10.10.229.64:3333
 http://10.10.229.64:3333 [200 OK] Apache[2.4.18], Bootstrap, Country[RESERVED][ZZ], Email[info@yourdomain.com], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.18 (Ubuntu)], IP[10.10.229.64], JQuery, Script, Title[Vuln University]
 ```
-
-Después de haber obtenido resultados no relevantes con `WhatWeb`, procedimos a utilizar `GoBuster` para escanear los directorios y archivos del sitio web con el objetivo de identificar información que pudiera brindarnos acceso al servidor.
+Después de no obtener resultados relevantes con `WhatWeb`, utilizamos `GoBuster` para realizar fuzzing de directorios en el sitio web con el objetivo de identificar información que pudiera brindarnos acceso al servidor.
 
 ```bash
 ❯ gobuster dir -u http://10.10.229.64:3333 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -req -t 30
@@ -177,7 +176,7 @@ Examinamos cada directorio identificado y descubrimos que el directorio `/intern
 
 ![internal](/assets/img/commons/vulnversity/internal.png){: .center-image }
 
-Al tratar de subir archivos con extensiones `.php`, `.txt`, `.jpg` y `.png`, recibimos un mensaje de error indicando que esas extensiones no son permitidas. Sin embargo, esta respuesta fue útil porque nos proporcionó información valiosa: el servidor sí permite la subida de archivos, pero solo de ciertas extensiones. Ahora debemos determinar cuáles son las extensiones permitidas para continuar con nuestra exploración.
+Al tratar de subir archivos con extensiones `.php`, `.txt`, `.jpg` y `.png`, recibimos un mensaje de error indicando que esas extensiones no son permitidas. Sin embargo, esta respuesta nos da a entender que el servidor sí permite la subida de archivos, pero solo de ciertas extensiones. Ahora debemos determinar cuáles son las extensiones permitidas para continuar con nuestra exploración.
 
 ![error](/assets/img/commons/vulnversity/error.png){: .center-image }
 
@@ -209,7 +208,7 @@ Luego enviamos la solicitud al módulo **Intruder** de `Burp Suite` con la combi
 
 ![extension](/assets/img/commons/vulnversity/extension.png){: .center-image }
 
-En la pestaña de Payloads de Burp Suite, cargamos nuestro diccionario con las extensiones que usaremos.
+En la pestaña de **Payloads** de `Burp Suite`, cargamos nuestro diccionario con las extensiones que usaremos.
 
 ![payload_settings](/assets/img/commons/vulnversity/payload_settings.png){: .center-image }
 
@@ -217,7 +216,7 @@ Desactivamos la codificación URL para evitar la codificación del punto (.) y a
 
 ![payload_encoding](/assets/img/commons/vulnversity/payload_encoding.png){: .center-image }
 
-Después de la configuración, se lleva a cabo el ataque. Al final, se nota que una única respuesta tiene una longitud distinta. Al analizar el código fuente de la respuesta, se comprueba que el archivo con extensión .phtml se subió correctamente.
+Después de la configuración, se lleva a cabo el ataque. Al final, se nota que una única respuesta tiene una longitud distinta. Al analizar el código fuente de la respuesta, se comprueba que el archivo con extensión `.phtml` se subió correctamente.
 
 ![attack](/assets/img/commons/vulnversity/attack.png){: .center-image }
 
