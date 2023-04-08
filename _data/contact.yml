@@ -6,6 +6,10 @@
 - type: twitter
   icon: "fab fa-twitter"
 
+- type: linkedin
+  icon: 'fab fa-linkedin'
+  url:  'https://www.linkedin.com/in/juan-rivas-280957232/'
+
 - type: email
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
