@@ -1,6 +1,6 @@
 ---
 title: Kenobi Writeup - TryHackMe
-date: 2023-04-04
+date: 2023-04-02
 categories: [Writeup, THM]
 tags: [Linux, THM, CTF, Easy, Mod Copy, PATH Hijacking]
 image: /assets/img/commons/kenobi/kenobi.png
