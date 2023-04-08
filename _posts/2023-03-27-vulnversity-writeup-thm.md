@@ -256,8 +256,7 @@ sh: 0: can't access tty; job control turned off
 $ whoami
 www-data
 ```
-
-Para mejorar la comodidad durante la interacción con la terminal, realizamos un tratamiento de la TTY siguiendo los pasos respectivos.
+Para mejorar la experiencia de uso en la terminal, seguimos los procedimientos descritos en [Tratamiento de la TTY](https://itzjp-sec.github.io/posts/tratamiento-tty/).
 
 En este punto ya tenemos acceso remoto al servidor y ya podemos acceder al directorio del usuario bill `/home/bill` y leer la primera flag.
 
