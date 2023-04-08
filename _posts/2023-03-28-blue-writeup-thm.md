@@ -4,7 +4,7 @@ date: 2023-03-28
 categories: [Writeup, THM]
 tags: [Windows, THM, CTF, Easy, Eternal Blue, MS17-010, Cracking de contraseñas]
 image:
-  path: ../../assets/img/commons/blue/blue.gif
+  path: ../../assets/img/commons/blue/blue.jpg
 ---
 
 ¡Hola!
