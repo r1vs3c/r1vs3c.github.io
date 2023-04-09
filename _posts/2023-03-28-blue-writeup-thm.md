@@ -548,10 +548,8 @@ good response status: INVALID_PARAMETER
 done
 ```
 
-<aside>
-❗ No hay que desanimarse si el exploit falla al principio. En mi caso, logré ejecutarlo con éxito al cuarto intento.
-
-</aside>
+> Es normal que el exploit falle en los primeros intentos, por lo que no hay que desanimarse. En mi caso, logré ejecutarlo con éxito después del cuarto intento.
+{: .prompt-info }
 
 Si todo salió bien, deberíamos obtener una shell con el usuario `nt authority\system`.
 
