@@ -2,14 +2,14 @@
 title: Relevant Writeup - TryHackMe
 date: 2023-04-03
 categories: [Writeup, THM]
-tags: [Linux, THM, CTF, Medium, MS17-010, Eternal Blue, SeImpersonatePrivilege]
+tags: [Windows, THM, CTF, Medium, MS17-010, Eternal Blue, SeImpersonatePrivilege]
 img_path: /assets/img/commons/relevant/
 image: relevant.jpeg
 ---
 
 ¡Hola!
 
-En este writeup, exploraremos la sala [**Relevant**](https://tryhackme.com/room/relevant) de TryHackMe, de dificultad media según la plataforma. A través de esta sala, explotaremos una máquina Windows en un entorno de pruebas realista. Debido a que se trata de una prueba tipo "black box", no se proporcionará información adicional para resolver el desafío. Cabe destacar que esta sala cuenta con más de una ruta para comprometer el sistema, y en este writeup se explorarán dos posibles vías de ataque.
+En este writeup, exploraremos la sala [**Relevant**](https://tryhackme.com/room/relevant) de TryHackMe, de dificultad media según la plataforma. A través de esta sala, explotaremos una máquina Windows en un entorno de pruebas realista. Debido a que se trata de una prueba tipo "**black box**", no se nos proporciona información adicional para resolver el desafío. Cabe destacar que esta sala cuenta con más de una ruta para comprometer el sistema, y en este writeup se explorarán dos posibles vías de ataque.
 
 ¡Empecemos!
 
