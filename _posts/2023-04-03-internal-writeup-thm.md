@@ -534,7 +534,7 @@ Finalmente, accedemos al directorio personal del usuario root y leemos la flag c
 
 ```bash
 root@internal:~# cat root.txt 
-THM{d0ck3r_d3str0y3r}
+THM{****************}
 ```
 
 ¡Happy Hacking!
