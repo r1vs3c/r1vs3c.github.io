@@ -1,7 +1,7 @@
 ---
 title: Vulnversity Writeup - TryHackMe
 date: 2023-03-27
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Linux, THM, CTF, Easy, Unrestricted File Upload, SUID]
 image:
   path: /assets/img/commons/vulnversity/vulnversity.png

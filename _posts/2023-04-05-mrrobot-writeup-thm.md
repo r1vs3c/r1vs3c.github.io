@@ -1,7 +1,7 @@
 ---
-title: Mr Robot CTF - TryHackMe
+title: Mr Robot Writeup - TryHackMe
 date: 2023-04-05
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Linux, THM, CTF, Medium, WordPress, SUID]
 img_path: /assets/img/commons/mrrobot/
 image: mrrobot.jpeg

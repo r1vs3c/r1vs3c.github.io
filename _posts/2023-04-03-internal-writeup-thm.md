@@ -1,7 +1,7 @@
 ---
 title: Internal Writeup - TryHackMe
 date: 2023-04-03
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Linux, THM, CTF, Hard, Port Forwarding, Docker]
 img_path: /assets/img/commons/internal/
 image: internal.jpeg

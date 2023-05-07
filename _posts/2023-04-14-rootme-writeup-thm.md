@@ -1,7 +1,7 @@
 ---
-title: RootMe - TryHackMe
+title: RootMe Writeup - TryHackMe
 date: 2023-04-14
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Linux, THM, CTF, Easy, Unrestricted File Upload, SUID]
 img_path: /assets/img/commons/rootme/
 image: rootme.png

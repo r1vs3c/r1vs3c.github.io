@@ -1,7 +1,7 @@
 ---
 title: Daily Bugle Writeup - TryHackMe
 date: 2023-04-02
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Linux, THM, CTF, Hard, SQLi]
 img_path: /assets/img/commons/dailybugle/
 image: dailybugle.png

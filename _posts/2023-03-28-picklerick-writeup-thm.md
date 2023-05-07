@@ -1,7 +1,7 @@
 ---
-title: Pickle Rick - TryHackMe
+title: Pickle Rick Writeup - TryHackMe
 date: 2023-03-28
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Linux, THM, CTF, Easy, Command Injection]
 img_path: /assets/img/commons/picklerick/
 image: picklerick.png
@@ -9,7 +9,7 @@ image: picklerick.png
 
 ¡Hola!
 
-En este writeup, exploraremos la sala [**Pickle Rick**](https://tryhackme.com/room/picklerick) de TryHackMe, de dificultad facil según la plataforma. A través de esta sala temática de Rick y Morty, aprenderemos cómo explotar un servidor web para encontrar tres ingredientes que ayudarán a Rick a crear una poción y así transformarse de nuevo en humano a partir de un pepinillo.
+En este writeup, exploraremos la sala [**Pickle Rick**](https://tryhackme.com/room/picklerick) de TryHackMe, de dificultad fácil según la plataforma. A través de esta sala temática de Rick y Morty, aprenderemos cómo explotar un servidor web para encontrar tres ingredientes que ayudarán a Rick a crear una poción y así transformarse de nuevo en humano a partir de un pepinillo.
 
 ¡Empecemos!
 

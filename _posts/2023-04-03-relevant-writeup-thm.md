@@ -1,7 +1,7 @@
 ---
 title: Relevant Writeup - TryHackMe
 date: 2023-04-03
-categories: [Writeup, THM]
+categories: [Writeups, THM]
 tags: [Windows, THM, CTF, Medium, MS17-010, Eternal Blue, SeImpersonatePrivilege]
 img_path: /assets/img/commons/relevant/
 image: relevant.jpeg
