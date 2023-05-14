@@ -129,7 +129,7 @@ Si exploramos el servicio web, encontraremos la siguiente página web.
 
 ![web](web.png)
 
-Inspeccionamos cada sección y el código fuente de la página web, sin embargo, no encontramos nada relevante. No obstante, al observar el pie de página, identificamos un dominio interesante.
+Inspeccionamos cada sección y el código fuente de la página web, sin embargo, no encontramos nada relevante. No obstante, al observar el pie de página, identificamos un dominio interesante que también fue detectado por el escaneo de NMAP.
 
 ![web2](web2.png)
 
@@ -219,62 +219,7 @@ Al levantar el responder, logramos obtener el hash del servicio `svc_apache`.
 
            NBT-NS, LLMNR & MDNS Responder 3.1.3.0
 
-  To support this project:
-  Patreon -> https://www.patreon.com/PythonResponder
-  Paypal  -> https://paypal.me/PythonResponder
-
-  Author: Laurent Gaffie (laurent.gaffie@gmail.com)
-  To kill this script hit CTRL-C
-
-[+] Poisoners:
-    LLMNR                      [ON]
-    NBT-NS                     [ON]
-    MDNS                       [ON]
-    DNS                        [ON]
-    DHCP                       [ON]
-
-[+] Servers:
-    HTTP server                [ON]
-    HTTPS server               [ON]
-    WPAD proxy                 [ON]
-    Auth proxy                 [OFF]
-    SMB server                 [ON]
-    Kerberos server            [ON]
-    SQL server                 [ON]
-    FTP server                 [ON]
-    IMAP server                [ON]
-    POP3 server                [ON]
-    SMTP server                [ON]
-    DNS server                 [ON]
-    LDAP server                [ON]
-    RDP server                 [ON]
-    DCE-RPC server             [ON]
-    WinRM server               [ON]
-
-[+] HTTP Options:
-    Always serving EXE         [OFF]
-    Serving EXE                [OFF]
-    Serving HTML               [OFF]
-    Upstream Proxy             [OFF]
-
-[+] Poisoning Options:
-    Analyze Mode               [OFF]
-    Force WPAD auth            [OFF]
-    Force Basic Auth           [OFF]
-    Force LM downgrade         [OFF]
-    Force ESS downgrade        [OFF]
-
-[+] Generic Options:
-    Responder NIC              [tun0]
-    Responder IP               [10.10.14.6]
-    Responder IPv6             [dead:beef:2::1004]
-    Challenge set              [random]
-    Don't Respond To Names     ['ISATAP']
-
-[+] Current Session Variables:
-    Responder Machine Name     [WIN-W1JLJ8BY8F7]
-    Responder Domain Name      [1TMK.LOCAL]
-    Responder DCE-RPC Port     [48259]
+[...]
 
 [+] Listening for events...
 
@@ -509,62 +454,7 @@ Luego, levantamos nuevamente el responder y esperamos la captura de algún hash.
 
            NBT-NS, LLMNR & MDNS Responder 3.1.3.0
 
-  To support this project:
-  Patreon -> https://www.patreon.com/PythonResponder
-  Paypal  -> https://paypal.me/PythonResponder
-
-  Author: Laurent Gaffie (laurent.gaffie@gmail.com)
-  To kill this script hit CTRL-C
-
-[+] Poisoners:
-    LLMNR                      [ON]
-    NBT-NS                     [ON]
-    MDNS                       [ON]
-    DNS                        [ON]
-    DHCP                       [ON]
-
-[+] Servers:
-    HTTP server                [ON]
-    HTTPS server               [ON]
-    WPAD proxy                 [ON]
-    Auth proxy                 [OFF]
-    SMB server                 [ON]
-    Kerberos server            [ON]
-    SQL server                 [ON]
-    FTP server                 [ON]
-    IMAP server                [ON]
-    POP3 server                [ON]
-    SMTP server                [ON]
-    DNS server                 [ON]
-    LDAP server                [ON]
-    RDP server                 [ON]
-    DCE-RPC server             [ON]
-    WinRM server               [ON]
-
-[+] HTTP Options:
-    Always serving EXE         [OFF]
-    Serving EXE                [OFF]
-    Serving HTML               [OFF]
-    Upstream Proxy             [OFF]
-
-[+] Poisoning Options:
-    Analyze Mode               [OFF]
-    Force WPAD auth            [OFF]
-    Force Basic Auth           [OFF]
-    Force LM downgrade         [OFF]
-    Force ESS downgrade        [OFF]
-
-[+] Generic Options:
-    Responder NIC              [tun0]
-    Responder IP               [10.10.14.6]
-    Responder IPv6             [dead:beef:2::1004]
-    Challenge set              [random]
-    Don't Respond To Names     ['ISATAP']
-
-[+] Current Session Variables:
-    Responder Machine Name     [WIN-JTT2RZUEZI4]
-    Responder Domain Name      [ZL5B.LOCAL]
-    Responder DCE-RPC Port     [45307]
+[...] 
 
 [+] Listening for events...
 
@@ -701,20 +591,6 @@ RunasCs.cs(277,29): warning CS0612: 'RunasCs.inet_addr(string)' is obsolete
 RunasCs.cs(1306,19): warning CS0649: Field 'AccessToken.TOKEN_PRIVILEGES.PrivilegeCount' is never assigned to, and will always have its default value 0
 RunasCs.cs(1308,38): warning CS0649: Field 'AccessToken.TOKEN_PRIVILEGES.Privileges' is never assigned to, and will always have its default value null
 RunasCs.cs(1332,23): warning CS0649: Field 'AccessToken.TOKEN_ELEVATION.TokenIsElevated' is never assigned to, and will always have its default value 0
-
-C:\Users\svc_apache\Desktop>dir
-dir
- Volume in drive C has no label.
- Volume Serial Number is 1DF4-493D
-
- Directory of C:\Users\svc_apache\Desktop
-
-04/18/2023  09:26 PM    <DIR>          .
-04/18/2023  09:26 PM    <DIR>          ..
-04/18/2023  09:23 PM            80,738 RunasCs.cs
-04/18/2023  09:26 PM            48,640 RunasCs.exe
-               2 File(s)        129,378 bytes
-               2 Dir(s)   5,031,772,160 bytes free
 ```
 
 Una vez compilada, ejecutamos el siguiente comando para generar un proceso que ejecute una PowerShell remota hacia nuestra máquina atacante en el puerto 444.
@@ -775,20 +651,9 @@ Active Connections
   TCP    0.0.0.0:5985           g0:0                   LISTENING
   TCP    0.0.0.0:8000           g0:0                   LISTENING
   TCP    0.0.0.0:9389           g0:0                   LISTENING
-  TCP    0.0.0.0:10247          g0:0                   LISTENING
-  TCP    0.0.0.0:47001          g0:0                   LISTENING
-  TCP    0.0.0.0:49664          g0:0                   LISTENING
-  TCP    0.0.0.0:49665          g0:0                   LISTENING
-  TCP    0.0.0.0:49666          g0:0                   LISTENING
-  TCP    0.0.0.0:49667          g0:0                   LISTENING
-  TCP    0.0.0.0:49673          g0:0                   LISTENING
-  TCP    0.0.0.0:49674          g0:0                   LISTENING
-  TCP    0.0.0.0:49682          g0:0                   LISTENING
-  TCP    0.0.0.0:49694          g0:0                   LISTENING
-  TCP    0.0.0.0:49723          g0:0                   LISTENING
-  TCP    10.10.11.187:53        g0:0                   LISTENING
-```
 
+[...]
+```
 ### Remote port forwarding
 
 Para inspeccionar el tráfico que fluye a través de este puerto, podemos utilizar un Remote port forwarding hacia nuestra máquina de ataque. Para ello, utilizaremos la herramienta `Chisel`. En primer lugar, compartiremos el ejecutable para Windows creando un servidor HTTP en Python.
