@@ -129,7 +129,7 @@ Si exploramos el servicio web, encontraremos la siguiente página web.
 
 ![web](web.png)
 
-Inspeccionamos cada sección y el código fuente de la página web, sin embargo, no encontramos nada relevante. No obstante, al observar el pie de página, identificamos un dominio interesante que también fue detectado por el escaneo de NMAP.
+Inspeccionamos cada sección y el código fuente de la página web, sin embargo, no encontramos nada relevante. No obstante, al observar el pie de página, identificamos un dominio interesante que también fue detectado por el escaneo de `NMAP`.
 
 ![web2](web2.png)
 
