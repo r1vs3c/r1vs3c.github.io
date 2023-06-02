@@ -7,6 +7,12 @@ img_path: /assets/img/commons/precious/
 image: precious.png
 ---
 
+¡Hola!
+
+En este writeup vamos a explorar la máquina [**Precious**](https://app.hackthebox.com/machines/513) de **HackTheBox**, que se clasifica como de dificultad fácil en la plataforma. Durante este desafío, llevaremos a cabo una enumeración web para descubrir un CVE relacionado con una aplicación utilizada en la web. Una vez que explotemos esta vulnerabilidad, escalaremos privilegios aprovechando los permisos de SUDO y una vulnerabilidad de deserialización Ruby.
+
+¡Empecemos!
+
 ## Reconocimiento activo
 
 ---
@@ -229,7 +235,9 @@ User henry may run the following commands on precious:
     (root) NOPASSWD: /usr/bin/ruby /opt/update_dependencies.rb
 ```
 
-Al parecer, el usuario `henry` puede ejecutar el archivo `update_dependencies.rb` con permisos de `root` sin necesidad de una contraseña. 
+Al parecer, el usuario `henry` puede ejecutar el archivo `update_dependencies.rb` con permisos de `root` sin necesidad de una contraseña.
+
+### Deserialización Ruby 
 
 Usamos `cat` para ver el contenido del archivo:
 
