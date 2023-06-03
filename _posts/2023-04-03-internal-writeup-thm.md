@@ -185,7 +185,7 @@ Realizamos una prueba con algunos usuarios por defecto y logramos confirmar la e
 
 ![user](user.png)
 
-# Explotación
+## Explotación
 
 ---
 
@@ -345,7 +345,7 @@ cat user.txt
 THM{***************}**
 ```
 
-# Escalación de privilegios
+## Escalación de privilegios
 
 ---
 
