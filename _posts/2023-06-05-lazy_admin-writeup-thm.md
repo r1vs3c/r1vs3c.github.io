@@ -7,6 +7,12 @@ img_path: /assets/img/commons/lazy_admin/
 image: lazy_admin.jpeg
 ---
 
+¡Saludos!
+
+En este writeup, vamos a explorar la máquina [**LazyAdmin**](https://tryhackme.com/room/lazyadmin) de **TryHackMe**, clasificada como de dificultad fácil según la plataforma. Se trata de una máquina Linux en la que realizaremos una enumeración web para identificar un panel de inicio de sesión del **CMS Sweet Rice**, así como su versión correspondiente. A continuación, investigaremos varias vulnerabilidades asociadas a la versión del CMS, mediante las cuales podremos obtener **copias de seguridad sensibles** y, además, explotar una vulnerabilidad de **Cross-Site Request Forgery** que nos proporcionará acceso al sistema. Por último, escalaremos privilegios al aprovechar un binario personalizado con permisos **SUDO**.
+
+¡Vamos a empezar!
+
 ## Reconocimiento activo
 
 ---
