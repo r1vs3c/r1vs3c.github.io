@@ -9,7 +9,7 @@ image: devel.png
 
 ¡Saludos!
 
-En este informe, nos adentraremos en la máquina [**Devel**](https://app.hackthebox.com/machines/Devel) de **HackTheBox**, la cual está clasificada con un nivel de dificultad fácil según la plataforma. Se trata de una máquina **Windows** en la que realizaremos una **enumeración FTP** utilizando el usuario **"anonymous"**, identificando que los archivos colocados en la raíz del servidor FTP están accesibles a través del servidor web. Aprovechando los permisos de carga de archivos en el servidor FTP, procederemos a cargar una web shell para lograr la ejecución remota de código. Posteriormente, estableceremos una reverse shell para obtener acceso al sistema. Finalmente, identificaremos que esta máquina es vulnerable a **MS11-046**, lo que nos permitirá escalar privilegios.
+En este writeup, nos adentraremos en la máquina [**Devel**](https://app.hackthebox.com/machines/Devel) de **HackTheBox**, la cual está clasificada con un nivel de dificultad fácil según la plataforma. Se trata de una máquina **Windows** en la que realizaremos una **enumeración FTP** utilizando el usuario **"anonymous"**, identificando que los archivos colocados en la raíz del servidor FTP están accesibles a través del servidor web. Aprovechando los permisos de carga de archivos en el servidor FTP, procederemos a cargar una web shell para lograr la ejecución remota de código. Posteriormente, estableceremos una reverse shell para obtener acceso al sistema. Finalmente, identificaremos que esta máquina es vulnerable a **MS11-046**, lo que nos permitirá escalar privilegios.
 
 ¡Vamos a empezar!
 
