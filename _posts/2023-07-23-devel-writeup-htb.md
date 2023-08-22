@@ -2,7 +2,7 @@
 title: Devel Writeup - HackTheBox
 date: 2023-07-23
 categories: [Writeups, HTB]
-tags: [Linux, HTB, CTF, Easy, IIS, MS11-046]
+tags: [Windows, HTB, CTF, Easy, IIS, MS11-046]
 img_path: /assets/img/commons/devel/
 image: devel.png
 ---
