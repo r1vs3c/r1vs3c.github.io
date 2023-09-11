@@ -18,9 +18,9 @@ timezone: America/Guayaquil
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: iTzJP # the main title
+title: r1vs3c # the main title
 
-tagline: Telecommunications Engineer | Cybersecurity Enthusiast | EHCA | ISO 27001 | (ISC)² - CC # it will display as the sub-title
+tagline: Telecommunications Engineer | Junior Penetration Tester | EHCA | ISO 27001 | CC - (ISC)² | CTF Player # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Página web personal. Artículos sobre ciberseguridad, CTFs e investigaciones.
@@ -29,10 +29,10 @@ description: >- # used by seo meta and the atom feed
 url: ""
 
 github:
-  username: iTzJP-Sec # change to your github username
+  username: r1vs3c # change to your github username
 
 twitter:
-  username: itzjp_sec # change to your twitter username
+  username: r1vs3c # change to your twitter username
 
 social:
   # Change to your full name.
@@ -45,7 +45,7 @@ social:
     # - https://github.com/username # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    - https://www.linkedin.com/in/juan-rivas-280957232
+    - https://www.linkedin.com/in/juan-rivas-sec/
 
 google_site_verification: # fill in to your verification string
 
