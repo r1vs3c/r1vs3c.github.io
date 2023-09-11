@@ -2,7 +2,7 @@
 title: Blog Writeup - TryHackMe
 date: 2023-06-15
 categories: [Writeups, THM]
-tags: [Linux, THM, CTF, Medium, Wordpress, CVE-2019-8943, SUID]
+tags: [Linux, THM, CTF, Medium, WordPress, CVE-2019-8943, SUID]
 img_path: /assets/img/commons/blog/
 image: blog.png
 ---
