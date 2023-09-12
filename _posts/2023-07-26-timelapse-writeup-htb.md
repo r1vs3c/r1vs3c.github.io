@@ -198,6 +198,10 @@ Archive:  winrm_backup.zip
   inflating: legacyy_dev_auth.pfx
 ```
 
+## Explotación
+
+---
+
 El certificado y la clave privada permiten iniciar sesión sin contraseña en `WinRM`. A continuación, intentaremos extraerlos del archivo.
 
 El primer paso será extraer la clave privada del archivo `PFX`, el cual estará encriptado, para ello ingresa el siguiente comando:
@@ -232,10 +236,6 @@ Enter Import Password:
 ❯ openssl pkcs12 -in legacyy_dev_auth.pfx -nokeys -out cert.pem
 Enter Import Password:
 ```
-
-## Explotación
-
----
 
 Una vez que hemos desencriptado el archivo `PFX` y generado un certificado y clave válidos, podemos intentar iniciar sesión a través de `WinRM`. En la salida de nuestro comando `Nmap`, podemos ver que el puerto 5986 está abierto, el cual se utiliza comúnmente por `WinRM` con conexiones `SSL` encriptadas. Dado que `Evil-WinRM` nos permite pasar una clave y un certificado utilizando las opciones `-c` y `-k`, podemos utilizarlos para autenticarnos en el objetivo.
 
@@ -306,6 +306,8 @@ The command completed successfully.
 ```
 
 El "**Local Administrator Password Solution**" (`LAPS`) se utiliza para gestionar las contraseñas de las cuentas locales de los equipos Active Directory. Por lo tanto, sería interesante encontrar una forma de autenticarnos como usuario `svc_deploy` y recuperar estas contraseñas. 
+
+### User Pivoting
 
 Afortunadamente, al inspeccionar el historial de la línea de comandos de PowerShell, hemos encontrado la contraseña del usuario `svc_deploy`.
 
