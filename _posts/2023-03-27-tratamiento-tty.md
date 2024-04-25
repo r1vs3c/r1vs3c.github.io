@@ -4,7 +4,7 @@ date: 2023-03-27
 categories: [Tutoriales]
 tags: [TTY, Reverse Shell]
 image:
-  path: ../../assets/img/commons/tratamiento-tty/bash.png
+  path: /assets/img/commons/tratamiento-tty/bash.png
 ---
 
 Cuando obtenemos una shell inversa en un sistema Linux, nos damos cuenta de que la shell que conseguimos no es muy cómoda ni funcional. No podemos usar las flechas, el tabulador, los atajos de teclado (`Ctrl+C`, `Ctrl+L`, etc.), ni siquiera ejecutar algunos programas como Python o Vim. Además, si pulsamos `Ctrl+C`, la conexión se cierra y debemos volver a empezar.
