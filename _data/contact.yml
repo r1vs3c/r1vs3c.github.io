@@ -4,7 +4,7 @@
   icon: "fab fa-github"
 
 - type: twitter
-  icon: "fab fa-twitter"
+  icon: "fa-brands fa-x-twitter"
 
 - type: linkedin
   icon: 'fab fa-linkedin'
@@ -13,6 +13,10 @@
 - type: email
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
+
+- type: hackthebox
+  icon: "fas fa-cube"
+  url: "https://app.hackthebox.com/profile/1276383"
 
 - type: rss
   icon: "fas fa-rss"
