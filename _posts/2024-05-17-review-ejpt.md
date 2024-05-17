@@ -115,8 +115,8 @@ En cuanto a si vale la pena, diría que depende de tu nivel de experiencia y tus
 - [**Todas las máquinas fáciles**](https://dockerlabs.es/#/): Son ideales para principiantes y cubren una amplia gama de técnicas y vulnerabilidades comunes.
 
 ## Despedida
-Espero que este artículo haya sido útil y que os sirva a la hora de enfrentaros al examen eJPTv2. Si tenéis cualquier pregunta, no dudéis en contactarme por [**LinkedIn**](https://www.linkedin.com/in/juan-rivas-sec/) o [**X**](https://x.com/r1vs3c). 
+Espero que este artículo haya sido útil y que les sirva al enfrentarse al examen eJPTv2. Si tienen alguna pregunta, no duden en contactarme a través de [**LinkedIn**](https://www.linkedin.com/in/juan-rivas-sec/) o [**X**](https://x.com/r1vs3c).
 
-¡Buena suerte en vuestro viaje en el apasionante mundo del pentesting!
+¡Buena suerte en su viaje en el apasionante mundo del pentesting!
 
 ![eJPT](eJPT.jpg)
