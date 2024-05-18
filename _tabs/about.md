@@ -4,16 +4,17 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-Saludos,
+¡Saludos!
 
-Mi nombre es **Juan Rivas**, soy **ingeniero en telecomunicaciones** y apasionado de la **ciberseguridad**. Me gusta mantenerme actualizado en mi área de especialización y siempre estoy en busca de nuevos conocimientos.
+Soy **Juan Rivas**, un **ingeniero en telecomunicaciones** apasionado por la **ciberseguridad**, especialmente en su vertiente ofensiva. Me fascina mantenerme al día en mi campo y estoy constantemente en la búsqueda de nuevos conocimientos.
 
-En el 2022 descubrí mi pasión por la ciberseguridad, lo que se ha convertido en mi principal pasatiempo. Desde entonces, he dedicado la mayor parte de mi tiempo a mejorar mis habilidades en este campo. He adquirido conocimientos teóricos y prácticos sobre la metodología necesaria para llevar a cabo pruebas de penetración profesionales, así como sobre las vulnerabilidades más comunes en entornos empresariales y su explotación.
+Este sitio web es mi plataforma para compartir mis modestos conocimientos. Aquí encontrarás una variedad de contenido, desde **artículos** sobre **ciberseguridad** hasta **writeups**, **herramientas que desarrollo personalmente**, **tutoriales** y otros temas relacionados. Espero que esta información sea útil tanto para principiantes como para expertos que deseen refrescar sus conocimientos. Agradezco cualquier sugerencia o corrección que desees aportar.
 
-Cuento con varias certificaciones relacionadas con la ciberseguridad emitidas por entidades reconocidas como Cisco, Fortinet, CertJoin y CertiProf, incluyendo la **EHCA** y la **ISO27001IA**. Actualmente, me encuentro en proceso de formación para obtener la certificación **eJPTv2** de eLearnSecurity.
+Si deseas conocer más sobre mi trabajo, puedes encontrarme en:
 
-Durante mi aprendizaje, he adquirido una sólida base de conocimientos en **redes**, **protocolos**, **análisis y explotación de vulnerabilidades**, **recopilación de información**, **Active Directory**, **SDR**, **elaboración de informes**, entre otros temas. Además, he desarrollado habilidades en el uso de diversas herramientas, como **NMAP**, **Nessus**, **Burp Suite**, **Wireshark**, **SQLMap**, **Metasploit**, **Nikto**, **Wfuzz**, entre otras.
+- [**LinkedIn**](https://www.linkedin.com/in/juan-rivas-sec/)
+- [**Twitter**](https://twitter.com/r1vs3c)
+- [**GitHub**](https://github.com/r1vs3c)
+- [**HackTheBox**](https://app.hackthebox.com/profile/1276383)
 
-Este sitio web está diseñado para servir como una plataforma en la que puedo organizar mis apuntes y compartir todo lo que aprendo en mi camino hacia la ciberseguridad. Aquí encontrarás **artículos** sobre **ciberseguridad**, **CTFs** e **investigaciones**. Espero que esta información sea útil tanto para principiantes como para personas experimentadas que deseen refrescar sus conocimientos. Agradezco cualquier sugerencia o corrección que puedas tener para mí.
-
-¡Gracias por visitar mi sitio y un cordial saludo!
+¡Gracias por visitar mi sitio y recibe un cálido saludo!
